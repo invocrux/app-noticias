@@ -6,7 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
+  items: number[] = Array(100);
+  constructor() { }
 
-  constructor() {}
+  onIonInfinite(event: any) {
+    console.log('se ejecuto el infinite', event);
+    this.items.push(...Array(100));
+  }
 
 }

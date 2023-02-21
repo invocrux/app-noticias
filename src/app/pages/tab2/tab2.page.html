@@ -1,0 +1,52 @@
+<ion-header [translucent]="true" translucent="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-title> Invocrux News </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-segment
+    [value]="categoriaDefault"
+    (ionChange)="segmentChanged($event)"
+    scrollable="true"
+    mode="md"
+  >
+    <ion-segment-button [value]="item" *ngFor="let item of categorias">
+      <ion-label class="ion-text-capitalize">{{item}}</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col
+        size="12"
+        sizeLg="3"
+        sizeMd="4"
+        sizeSm="6"
+        sizeXs="12"
+        *ngFor="let item of articulosPorCategoria; let i = index"
+      >
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>{{item.title}}</ion-card-title>
+            <ion-card-subtitle *ngIf="item.author" style="display: flex">
+              Author:{{item.author}}</ion-card-subtitle
+            >
+            <span>{{i + 1}}</span>
+          </ion-card-header>
+
+          <ion-img *ngIf="item.urlToImage" [src]="item.urlToImage"></ion-img>
+          <ion-card-content> {{item.content}} </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-button (click)="loadData()" fill="clear" shape="round" mode="md">
+    Cargar mas informacion<ion-icon slot="icon-only" name="add"></ion-icon>
+  </ion-button>
+
+  <!-- <ion-infinite-scroll (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll> -->
+</ion-content>
